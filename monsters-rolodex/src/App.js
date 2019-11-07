@@ -20,6 +20,12 @@ componentDidMount() {
   .then(users => this.setState({ monsters: users }));
 }
 render() {
+
+  //destructoring
+  const { monsters, searchField } = this.state;
+  const filteredMonsters = monsters.filter(monster =>
+    monster.name.toLowerCase().includes(searchField.toLowerCase())
+    )
     return (
       <div className='App'>
         <input type='search' 
@@ -28,7 +34,7 @@ render() {
             this.setState({ searchField: e.target.value })}
           }
         />
-        <CardList monsters={this.state.monsters}/>
+        <CardList monsters={filteredMonsters}/>
 
       
       </div>
